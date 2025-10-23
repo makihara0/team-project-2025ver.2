@@ -66,6 +66,8 @@ input:focus{border-color:var(--primary);box-shadow:0 2px 8px rgba(37,99,235,0.12
 .actions{display:flex;justify-content:flex-end;margin-top:4px}
 .btn{padding:10px 16px;border-radius:10px;border:none;cursor:pointer;font-weight:600}
 .btn.primary{background:var(--primary);color:var(--primary-contrast)}
+.btn.secondary{background:transparent;color:var(--primary);border:1px solid rgba(37,99,235,0.12);margin-right:8px}
+.btn.secondary:active{transform:translateY(1px)}
 
 /* message */
 .form-message{margin-top:8px;font-size:0.9rem;color:#b91c1c;min-height:1.2em}
@@ -78,6 +80,7 @@ input:focus{border-color:var(--primary);box-shadow:0 2px 8px rgba(37,99,235,0.12
   .card{padding:20px;border-radius:10px}
   .title{font-size:1.1rem}
   .password-wrap{flex-direction:row}
-  .actions{justify-content:stretch}
-  .btn.primary{width:100%}
+  .actions{justify-content:space-between;gap:8px}
+  .btn.primary{flex:1}
+  .btn.secondary{flex:1}
 }

@@ -30,6 +30,7 @@
         </label>
 
         <div class="actions">
+          <button class="btn secondary" type="button" id="guestBtn" aria-label="ゲストで続行">ゲストで続行</button>
           <button class="btn primary" type="submit">ログイン</button>
         </div>
 
@@ -46,13 +47,15 @@
     </section>
   </main>
 
-  <script>
+      <script>
     (function () {
       const form = document.getElementById('loginForm');
       const email = document.getElementById('email');
       const password = document.getElementById('password');
       const msg = document.getElementById('formMessage');
       const toggle = document.getElementById('togglePwd');
+      const guestBtn = document.getElementById('guestBtn');
+      const GUEST_PAGE = '2-21-自己紹介ページ.html';
 
       toggle.addEventListener('click', () => {
         const isPwd = password.type === 'password';
@@ -61,9 +64,24 @@
         toggle.setAttribute('aria-pressed', String(!isPwd));
       });
 
+      // 明示的なゲストボタン
+      guestBtn.addEventListener('click', () => {
+        window.location.href = GUEST_PAGE;
+      });
+
       form.addEventListener('submit', (e) => {
         e.preventDefault();
         msg.textContent = '';
+        const emailVal = email.value.trim();
+        const pwdVal = password.value.trim();
+
+        // 両方空ならゲストモードで遷移
+        if (emailVal === '' && pwdVal === '') {
+          window.location.href = GUEST_PAGE;
+          return;
+        }
+
+        // 入力がある場合は通常のバリデーション
         if (!email.checkValidity()) {
           msg.textContent = 'メールアドレスの形式が正しくありません。';
           email.focus();
@@ -74,6 +92,7 @@
           password.focus();
           return;
         }
+
         // TODO: 実際の送信処理（Fetchなど）をここに追加
         msg.textContent = '送信処理を実行します（ダミー）';
       });
